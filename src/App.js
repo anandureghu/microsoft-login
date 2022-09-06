@@ -1,9 +1,16 @@
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="flex justify-center h-screen items-center bg-gray-900 text-slate-300 font-bold text-4xl uppercase">
-      react
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index path="/" element={<Navigate to={'/signin'}/>}/>
+        <Route path="/signin" element={<Login/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
