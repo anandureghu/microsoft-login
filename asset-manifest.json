@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/anandureghu/microsoft-login/static/css/main.81a40364.css",
+    "main.js": "/anandureghu/microsoft-login/static/js/main.11ef2775.js",
+    "index.html": "/anandureghu/microsoft-login/index.html",
+    "main.81a40364.css.map": "/anandureghu/microsoft-login/static/css/main.81a40364.css.map",
+    "main.11ef2775.js.map": "/anandureghu/microsoft-login/static/js/main.11ef2775.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81a40364.css",
+    "static/js/main.11ef2775.js"
+  ]
+}
