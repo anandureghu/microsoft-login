@@ -1,10 +1,10 @@
 import React from 'react'
-import MicrosoftLogin from '../components/MicrosoftLogin/MicrosoftLogin'
+import Microsoft from '../components/MicrosoftLogin/Microsoft'
 
 const Login = () => {
   return (
     <div className='flex h-screen justify-center items-center flex-col bg-slate-100'>
-      <MicrosoftLogin/>
+      <Microsoft/>
     </div>
   )
 }

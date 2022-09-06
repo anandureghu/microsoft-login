@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route index path="/" element={<Navigate to={'/signin'}/>}/>
         <Route path="/signin" element={<Login/>}/>
+        <Route path="/dashboard" element={<NotFound/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
