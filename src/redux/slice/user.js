@@ -9,13 +9,14 @@ const userSlice = createSlice({
       name: null,
     },
     accessToken: null,
-
+    instance: null,
   },
   reducers: {
     login: (state, action) => {
-      const { tokenClaim, token,  } = action.payload
+      const { tokenClaim, token, instance } = action.payload
       console.log(tokenClaim)
       state.accessToken = token
+      state.instance = instance
       localStorage.setItem(auth.TOKEN, token)
 
       state.user = {
@@ -25,12 +26,13 @@ const userSlice = createSlice({
     },
     logout: (state, action) => {
       state.user = {username: null, name: null}
-      state.token = null
+      state.accessToken = null
       localStorage.setItem(auth.TOKEN, "null")
+      state.instance.clearCache()
     }
   }
 })
 
 
-export const { login, logout } = userSlice.action
+export const { login, logout } = userSlice.actions
 export const UserReducer = userSlice.reducer

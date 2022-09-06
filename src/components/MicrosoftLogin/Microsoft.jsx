@@ -1,32 +1,30 @@
-import { useMsal } from "@azure/msal-react";
 import React, { useState } from "react";
-import { loginRequest } from "../../authConfig";
 import MicrosoftLogin from "react-microsoft-login";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slice/user";
 
 const Microsoft = () => {
-  // const { instance } = useMsal();
-  // const handleLogin = (instance) => {
-  //   instance.loginPopup(loginRequest).catch((e) => {
-  //     console.error(e);
-  //   });
-  // };
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [msalInstance, onMsalInstanceChange] = useState();
   const loginHandler = (err, data, msal) => {
     console.log(err);
-    console.log(data)
+    console.log(data);
+    console.log("msal: ", msal)
+
     if (data) {
-      dispatch(login({tokenClaim: data.idTokenClaims, token: data.accessToken}))
+      dispatch(
+        login({
+          tokenClaim: data.idTokenClaims,
+          token: data.accessToken,
+          instance: msal,
+        })
+      );
       onMsalInstanceChange(msal);
+      navigate("/dashboard");
     }
-  };
-  const logoutHandler = () => {
-    // logout from microsoft session
-    // msalInstance.logout();
   };
 
   return (
@@ -41,17 +39,12 @@ const Microsoft = () => {
         a simple and intelligent microsoft login that makes it easy to
         authenticate
       </p>
-      {/* <button onClick={() => handleLogin(instance)}>Sign In</button> */}
-      {msalInstance ? (
-        <button onClick={logoutHandler}>Logout</button>
-      ) : (
-        <MicrosoftLogin
-          clientId={process.env.REACT_APP_CLIENT_ID}
-          authCallback={loginHandler}
-          redirectUri={"http://localhost:3000/dashboard"}
-          response_type="none"
-        />
-      )}
+      <MicrosoftLogin
+        clientId={process.env.REACT_APP_CLIENT_ID}
+        authCallback={loginHandler}
+        redirectUri={"http://localhost:3000/dashboard"}
+        response_type="none"
+      />
     </div>
   );
 };
